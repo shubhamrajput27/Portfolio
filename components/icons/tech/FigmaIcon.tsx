@@ -1,12 +1,12 @@
 import React from 'react';
 
 const FigmaIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
-    <path d="M12 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" fill="#f24e1e"/>
-    <path d="M9.5 5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" fill="#ff7262"/>
-    <path d="M7 9.5a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0z" fill="#a259ff"/>
-    <path d="M9.5 14a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" fill="#1abcfe"/>
-    <path d="M14.5 9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" fill="#0acf83"/>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" {...props}>
+    <path fill="#0acf83" d="M45.5 129c11.9 0 21.5-9.6 21.5-21.5V86H45.5C33.6 86 24 95.6 24 107.5S33.6 129 45.5 129z"/>
+    <path fill="#a259ff" d="M24 64.5C24 52.6 33.6 43 45.5 43H67v43H45.5C33.6 86 24 76.4 24 64.5z"/>
+    <path fill="#f24e1e" d="M24 21.5C24 9.6 33.6 0 45.5 0H67v43H45.5C33.6 43 24 33.4 24 21.5z"/>
+    <path fill="#ff7262" d="M67 0h21.5C100.4 0 110 9.6 110 21.5S100.4 43 88.5 43H67V0z"/>
+    <path fill="#1abcfe" d="M110 64.5c0 11.9-9.6 21.5-21.5 21.5S67 76.4 67 64.5 76.6 43 88.5 43 110 52.6 110 64.5z"/>
   </svg>
 );
 

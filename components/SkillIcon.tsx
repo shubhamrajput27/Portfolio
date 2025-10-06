@@ -11,9 +11,7 @@ import Css3Icon from './icons/tech/Css3Icon';
 import SassIcon from './icons/tech/SassIcon';
 import ReduxIcon from './icons/tech/ReduxIcon';
 import FramerMotionIcon from './icons/tech/FramerMotionIcon';
-import NodejsIcon from './icons/tech/NodejsIcon';
 import ExpressIcon from './icons/tech/ExpressIcon';
-import MongoDbIcon from './icons/tech/MongoDbIcon';
 import FirebaseIcon from './icons/tech/FirebaseIcon';
 import GraphQLIcon from './icons/tech/GraphQLIcon';
 import GithubIcon from './icons/tech/GithubIcon';
@@ -42,9 +40,7 @@ const iconMap: { [key: string]: React.FC<React.SVGProps<SVGSVGElement>> } = {
   sass: SassIcon,
   redux: ReduxIcon,
   framer: FramerMotionIcon,
-  nodejs: NodejsIcon,
   express: ExpressIcon,
-  mongodb: MongoDbIcon,
   firebase: FirebaseIcon,
   graphql: GraphQLIcon,
   github: GithubIcon,

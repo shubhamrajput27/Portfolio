@@ -44,7 +44,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, image, te
       </div>
     </div>
   </div>
-));
+);
 
 ProjectCard.displayName = 'ProjectCard';
 
