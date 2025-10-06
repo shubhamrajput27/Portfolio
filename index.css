@@ -1,0 +1,115 @@
+/* Custom styles for portfolio website */
+/* Tailwind CSS is loaded via CDN in index.html */
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f0f9ff; /* sky-50 */
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background-color: #0f172a; /* slate-900 */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #0369a1; /* sky-700 */
+  border-radius: 9999px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background-color: #38bdf8; /* sky-400 */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  opacity: 0.8;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus styles for accessibility */
+.focus-visible:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #0369a1, 0 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+html.dark .focus-visible:focus {
+  box-shadow: 0 0 0 2px #38bdf8, 0 0 0 4px rgba(2, 6, 23, 0.8);
+}
+
+/* Custom animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .bg-secondary {
+    background-color: white !important;
+  }
+  
+  html.dark .bg-dark-secondary {
+    background-color: black !important;
+  }
+}
+
+/* Additional optimizations for performance */
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

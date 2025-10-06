@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Dynamic Personal Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              // Light theme (default) - WCAG Compliant
+              'primary': '#ffffff',        // white
+              'secondary': '#f0f9ff',      // sky-50
+              'accent': '#0369a1',        // sky-700
+              'text-primary': '#0c4a6e',   // sky-900
+              'text-secondary': '#334155', // slate-700
+
+              // Dark theme colors - WCAG Compliant
+              'dark-primary': '#020617',      // slate-950
+              'dark-secondary': '#0f172a',    // slate-900
+              'dark-accent': '#38bdf8',      // sky-400
+              'dark-text-primary': '#f0f9ff', // sky-50
+              'dark-text-secondary': '#cbd5e1', // slate-300
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-out forwards',
+              'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+              'pop-in': 'popIn 0.5s ease-out forwards',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              popIn: {
+                '0%': { opacity: '0', transform: 'scale(0.5)' },
+                '100%': { opacity: '1', transform: 'scale(1)' },
+              },
+            },
+             typography: ({ theme }) => ({
+                DEFAULT: {
+                    css: {
+                        '--tw-prose-body': theme('colors.text-secondary'),
+                        '--tw-prose-bold': theme('colors.text-primary'),
+                        '--tw-prose-headings': theme('colors.text-primary'),
+                        '--tw-prose-bullets': theme('colors.text-secondary'),
+                        '--tw-prose-invert-body': theme('colors.dark-text-secondary'),
+                        '--tw-prose-invert-bold': theme('colors.dark-text-primary'),
+                        '--tw-prose-invert-headings': theme('colors.dark-text-primary'),
+                        '--tw-prose-invert-bullets': theme('colors.dark-text-secondary'),
+                         // Make spacing more compact for chat
+                        p: { marginTop: '0', marginBottom: '0.5em' },
+                        ul: { marginTop: '0', marginBottom: '0.5em' },
+                        ol: { marginTop: '0', marginBottom: '0.5em' },
+                        li: { marginTop: '0', marginBottom: '0' },
+                        '>:first-child': { marginTop: '0' },
+                        '>:last-child': { marginBottom: '0' },
+                    },
+                },
+            }),
+          },
+        },
+      }
+    </script>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^0.13.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-primary text-text-primary dark:bg-dark-primary dark:text-dark-text-primary font-sans antialiased transition-colors duration-300">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
