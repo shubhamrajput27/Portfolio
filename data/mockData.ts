@@ -55,26 +55,30 @@ export const skillCategories: SkillCategory[] = [
 
 export const projects: Project[] = [
   {
-    title: 'MentorConnect - Comprehensive Mentorship Platform',
-    description: 'A full-stack web application connecting students with expert mentors, featuring real-time messaging, session booking, and progress tracking.',
-    image: 'https://i.imgur.com/gK7zYV7.png',
-    techStack: ['PHP', 'MySQL', 'HTML5', 'CSS3', 'JavaScript', 'RESTful APIs'],
+    title: 'MentorConnect - Professional Mentorship Platform',
+    description: 'A modern, full-stack mentorship platform connecting students with expert mentors worldwide. Features perfect Lighthouse scores, PWA capabilities, and comprehensive mentoring tools.',
+    image: '/images/mentorconnect-landing.png',
+    techStack: ['PHP 8.0+', 'MySQL', 'HTML5', 'CSS3', 'JavaScript', 'PWA', 'Apache'],
     githubLink: 'https://github.com/shubhamrajput27/mentorconnect',
-    liveDemoLink: '#',
-    detailedDescription: 'MentorConnect is a robust, full-stack web application designed to bridge the gap between students and experienced professionals. The platform provides a seamless and intuitive experience for both mentors and mentees, facilitating meaningful connections and knowledge sharing. Key features include a smart matching algorithm, real-time messaging, a comprehensive session scheduling system, and a professional admin dashboard for managing the platform.',
+    liveDemoLink: 'http://localhost/mentorconnect',
+    detailedDescription: 'MentorConnect is a cutting-edge mentorship platform that bridges the gap between students and experienced professionals worldwide. Built with modern web technologies and achieving perfect 100/100 Lighthouse scores across all metrics (Performance, Accessibility, Best Practices, SEO), this Progressive Web App offers an exceptional user experience. The platform features smart mentor matching, real-time messaging, integrated scheduling, progress tracking, and a comprehensive admin dashboard. With advanced security measures, offline capabilities, and mobile-first responsive design, MentorConnect represents the future of digital mentorship.',
     images: [
-      'https://i.imgur.com/gK7zYV7.png',
+      '/images/mentorconnect-landing.png',
       'https://i.imgur.com/P4w58hS.png',
       'https://i.imgur.com/6Z2y2jZ.png',
     ],
     challenges: [
         {
-            challenge: 'Implementing a real-time messaging system that is both scalable and efficient.',
-            solution: 'Utilized WebSocket for persistent connections to minimize latency. On the backend, PHP was used to handle message queuing and broadcasting, ensuring reliable and instant message delivery to all connected clients.'
+            challenge: 'Achieving perfect Lighthouse scores while maintaining rich functionality and real-time features.',
+            solution: 'Implemented advanced performance optimization techniques including service workers, intelligent caching strategies, image optimization, lazy loading, and code splitting. Used critical CSS inlining and resource preloading to minimize render-blocking resources.'
         },
         {
-            challenge: 'Designing a smart matching algorithm to connect mentors and students effectively based on multiple criteria.',
-            solution: 'Developed a weighted scoring system in PHP and MySQL that considers skills, interests, career goals, and availability. The algorithm runs as a scheduled task to suggest new, high-quality matches to users periodically.'
+            challenge: 'Creating a scalable smart matching algorithm that considers multiple criteria for mentor-student pairing.',
+            solution: 'Developed a sophisticated weighted scoring system using PHP and MySQL that evaluates skills, interests, career goals, availability, and user preferences. The algorithm runs as an optimized background process with caching to ensure fast matching results.'
+        },
+        {
+            challenge: 'Building a Progressive Web App with offline capabilities and real-time messaging.',
+            solution: 'Implemented service workers for offline functionality, background sync for message delivery, and WebSocket connections for real-time communication. Created a robust caching strategy that allows core functionality to work even without internet connectivity.'
         }
     ],
   },

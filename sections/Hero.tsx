@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { userProfile } from '../data/mockData';
 import GithubIcon from '../components/icons/GithubIcon';
 import LinkedinIcon from '../components/icons/LinkedinIcon';
@@ -11,6 +12,71 @@ declare global {
 }
 
 type Theme = 'light' | 'dark';
+
+const TypingAnimation: React.FC = () => {
+  const [currentTextIndex, setCurrentTextIndex] = React.useState(0);
+  const [currentCharIndex, setCurrentCharIndex] = React.useState(0);
+  const [isDeleting, setIsDeleting] = React.useState(false);
+
+  const texts = [
+    'Full Stack Developer',
+    'React Developer', 
+    'Node.js Developer',
+    'TypeScript Expert',
+    'Frontend Specialist',
+    'Backend Engineer'
+  ];
+
+  React.useEffect(() => {
+    const currentText = texts[currentTextIndex];
+    
+    const handleTyping = () => {
+      if (!isDeleting) {
+        // Typing forward
+        if (currentCharIndex < currentText.length) {
+          setCurrentCharIndex(prev => prev + 1);
+        } else {
+          // Finished typing, start deleting after pause
+          setTimeout(() => {
+            setIsDeleting(true);
+          }, 1500);
+          return;
+        }
+      } else {
+        // Deleting backward
+        if (currentCharIndex > 0) {
+          setCurrentCharIndex(prev => prev - 1);
+        } else {
+          // Finished deleting, move to next text
+          setIsDeleting(false);
+          setCurrentTextIndex(prev => (prev + 1) % texts.length);
+          return;
+        }
+      }
+    };
+
+    const timeout = setTimeout(handleTyping, isDeleting ? 50 : 100);
+    return () => clearTimeout(timeout);
+  }, [currentCharIndex, currentTextIndex, isDeleting, texts]);
+
+  const displayText = texts[currentTextIndex].slice(0, currentCharIndex);
+
+  return (
+    <span className="inline-block min-h-[2rem] flex items-center justify-center text-center w-full">
+      <span>{displayText}</span>
+      <motion.span 
+        className="inline-block w-0.5 h-8 bg-orange-400 ml-1"
+        animate={{ opacity: [1, 0] }}
+        transition={{
+          duration: 0.8,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut"
+        }}
+      />
+    </span>
+  );
+};
 
 const Hero: React.FC = () => {
   useEffect(() => {
@@ -93,52 +159,178 @@ const Hero: React.FC = () => {
     }
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const buttonVariants = {
+    hidden: { scale: 0, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "backOut"
+      }
+    },
+    hover: {
+      scale: 1.05,
+      transition: {
+        duration: 0.2
+      }
+    },
+    tap: {
+      scale: 0.95
+    }
+  };
+
+  const socialVariants = {
+    hidden: { x: -50, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    },
+    hover: {
+      y: -5,
+      transition: {
+        duration: 0.2
+      }
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-secondary dark:bg-dark-secondary overflow-hidden transition-colors duration-300">
       <div id="tsparticles" className="absolute inset-0 z-0" />
-      <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-text-primary dark:text-dark-text-primary opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-          Hi, I'm <span className="text-accent dark:text-dark-accent">{userProfile.name}</span>
-        </h1>
-        <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-semibold bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent opacity-0 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-          {userProfile.profession}
-        </h2>
-        <p className="mt-6 text-lg sm:text-xl text-text-secondary dark:text-dark-text-secondary max-w-2xl mx-auto opacity-0 animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+      <motion.div 
+        className="relative z-10 text-center max-w-4xl mx-auto px-4"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.h1 
+          className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-text-primary dark:text-dark-text-primary"
+          variants={itemVariants}
+        >
+          Hi, I'm <motion.span 
+            className="text-accent dark:text-dark-accent"
+            initial={{ color: '#0ea5e9' }}
+            animate={{ 
+              color: ['#0ea5e9', '#f97316', '#ec4899', '#8b5cf6', '#0ea5e9']
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            {userProfile.name}
+          </motion.span>
+        </motion.h1>
+        
+        <motion.h2 
+          className="mt-3 text-2xl sm:text-3xl md:text-4xl font-semibold bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent"
+          variants={itemVariants}
+        >
+          <TypingAnimation />
+        </motion.h2>
+        
+        <motion.p 
+          className="mt-6 text-lg sm:text-xl text-text-secondary dark:text-dark-text-secondary max-w-2xl mx-auto"
+          variants={itemVariants}
+        >
           {userProfile.tagline}
-        </p>
-        <div className="mt-8 flex justify-center gap-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '400ms' }}>
-          <a
+        </motion.p>
+        
+        <motion.div 
+          className="mt-8 flex justify-center gap-6"
+          variants={containerVariants}
+        >
+          <motion.a
             href={userProfile.resumeUrl}
             onClick={handleDownloadResume}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-accent dark:bg-dark-accent text-primary dark:text-dark-primary font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-sky-600 dark:hover:bg-sky-500 transition-colors duration-300"
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
           >
             Download Resume
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="#contact"
             onClick={handleSmoothScroll}
             className="inline-block bg-primary dark:bg-dark-secondary text-text-primary dark:text-dark-text-primary font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors duration-300 ring-1 ring-slate-300 dark:ring-slate-500"
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
           >
             Contact Me
-          </a>
-        </div>
-        <div className="mt-10 flex justify-center flex-wrap items-center gap-x-8 gap-y-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '500ms' }}>
-          <a href={userProfile.socials.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg text-text-secondary dark:text-dark-text-secondary hover:text-accent dark:hover:text-dark-accent transition-colors duration-300">
+          </motion.a>
+        </motion.div>
+        
+        <motion.div 
+          className="mt-10 flex justify-center flex-wrap items-center gap-x-8 gap-y-4"
+          variants={containerVariants}
+        >
+          <motion.a 
+            href={userProfile.socials.github} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex items-center gap-2 text-lg text-text-secondary dark:text-dark-text-secondary hover:text-accent dark:hover:text-dark-accent transition-colors duration-300"
+            variants={socialVariants}
+            whileHover="hover"
+          >
             <GithubIcon className="h-6 w-6" />
             <span className="font-medium">GitHub</span>
-          </a>
-          <a href={userProfile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg text-text-secondary dark:text-dark-text-secondary hover:text-accent dark:hover:text-dark-accent transition-colors duration-300">
+          </motion.a>
+          <motion.a 
+            href={userProfile.socials.linkedin} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex items-center gap-2 text-lg text-text-secondary dark:text-dark-text-secondary hover:text-accent dark:hover:text-dark-accent transition-colors duration-300"
+            variants={socialVariants}
+            whileHover="hover"
+          >
             <LinkedinIcon className="h-6 w-6" />
             <span className="font-medium">LinkedIn</span>
-          </a>
-          <a href={userProfile.socials.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-lg text-text-secondary dark:text-dark-text-secondary hover:text-accent dark:hover:text-dark-accent transition-colors duration-300">
+          </motion.a>
+          <motion.a 
+            href={userProfile.socials.instagram} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex items-center gap-2 text-lg text-text-secondary dark:text-dark-text-secondary hover:text-accent dark:hover:text-dark-accent transition-colors duration-300"
+            variants={socialVariants}
+            whileHover="hover"
+          >
             <InstagramIcon className="h-6 w-6" />
             <span className="font-medium">Instagram</span>
-          </a>
-        </div>
-      </div>
+          </motion.a>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

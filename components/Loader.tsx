@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { userProfile } from '../data/mockData';
 
 declare global {
@@ -53,68 +54,145 @@ const Loader: React.FC<LoaderProps> = ({ onLoaded }) => {
 
     const interval = setInterval(() => {
       setProgress(prev => {
-        const newProgress = prev + 1;
-        if (newProgress > 100) {
+        const newProgress = prev + 3;
+        if (newProgress >= 100) {
           clearInterval(interval);
-          setTimeout(onLoaded, 500); 
+          setTimeout(onLoaded, 200); 
           return 100;
         }
 
         if (newProgress > 25 && statusIndex === 0) setStatusIndex(1);
         if (newProgress > 50 && statusIndex === 1) setStatusIndex(2);
-        if (newProgress > 85 && statusIndex === 2) setStatusIndex(3);
+        if (newProgress > 80 && statusIndex === 2) setStatusIndex(3);
         
         return newProgress;
       });
-    }, 40);
+    }, 25);
 
     return () => clearInterval(interval);
   }, [onLoaded, statusIndex]);
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-dark-primary text-slate-300 font-sans">
+    <motion.div 
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-dark-primary text-slate-300 font-sans"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div id="tsparticles-loader" className="absolute inset-0 z-0" />
       <div className="relative z-10 text-center w-full">
-        <div className="animate-fade-in" style={{ animationDuration: '1s' }}>
-          <h1 className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">
-            {userProfile.name}
-          </h1>
-          <p className="mt-2 text-xl md:text-2xl text-slate-400">
+        <motion.div
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.h1 
+            className="text-6xl md:text-7xl font-bold bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent"
+            animate={{ 
+              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            Hello World!
+          </motion.h1>
+          <motion.p 
+            className="mt-2 text-xl md:text-2xl text-slate-400"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
             {userProfile.profession}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="mt-16 w-full max-w-md px-4 mx-auto animate-fade-in-up" style={{ animationDelay: '200ms', animationDuration: '1s' }}>
+        <motion.div 
+          className="mt-16 w-full max-w-md px-4 mx-auto"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+        >
           <div className="flex justify-between items-center text-sm font-medium tracking-widest text-slate-400 mb-2">
             <div className="flex items-center">
-              <span className="w-2 h-2 bg-orange-400 rounded-full mr-2 animate-pulse"></span>
+              <motion.span 
+                className="w-2 h-2 bg-orange-400 rounded-full mr-2"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [1, 0.5, 1]
+                }}
+                transition={{
+                  duration: 1,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
               <span>LOADING PORTFOLIO</span>
             </div>
-            <span>{String(progress).padStart(3, '0')}%</span>
+            <motion.span
+              key={progress}
+              initial={{ scale: 1.2 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.1 }}
+            >
+              {String(progress).padStart(3, '0')}%
+            </motion.span>
           </div>
           
           <div className="w-full bg-slate-700 rounded-full h-1.5 overflow-hidden">
-            <div
-              className="bg-gradient-to-r from-orange-400 to-pink-400 h-full rounded-full transition-all duration-300 ease-linear"
-              style={{ width: `${progress}%` }}
-            ></div>
+            <motion.div
+              className="bg-gradient-to-r from-orange-400 to-pink-400 h-full rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            />
           </div>
 
           <div className="mt-8 flex flex-col items-center">
             <div className="flex items-center space-x-2 h-8">
-              <div className="w-7 h-7 border-2 border-slate-600 border-t-orange-400 rounded-full animate-spin"></div>
-              <div className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-pulse" style={{ animationDelay: '0s' }}></div>
-              <div className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-              <div className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
-              <div className="w-1.5 h-1.5 bg-slate-500 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+              <motion.div 
+                className="w-7 h-7 border-2 border-slate-600 border-t-orange-400 rounded-full"
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 1,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              />
+              {[0, 0.2, 0.4, 0.6].map((delay, index) => (
+                <motion.div 
+                  key={index}
+                  className="w-1.5 h-1.5 bg-slate-500 rounded-full"
+                  animate={{ 
+                    scale: [1, 1.5, 1],
+                    opacity: [0.3, 1, 0.3]
+                  }}
+                  transition={{
+                    duration: 0.8,
+                    repeat: Infinity,
+                    delay: delay,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
             </div>
-            <p className="mt-4 text-slate-500 text-sm h-5">
+            <motion.p 
+              className="mt-4 text-slate-500 text-sm h-5"
+              key={statusIndex}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
               {loadingStatuses[statusIndex]}
-            </p>
+            </motion.p>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

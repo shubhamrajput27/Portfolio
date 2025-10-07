@@ -42,7 +42,7 @@ html.dark .focus-visible:focus {
   box-shadow: 0 0 0 2px #38bdf8, 0 0 0 4px rgba(2, 6, 23, 0.8);
 }
 
-/* Custom animation keyframes */
+/* Custom animation keyframes - Now mostly handled by Framer Motion */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -72,6 +72,19 @@ html.dark .focus-visible:focus {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+/* Enhanced animations for Framer Motion compatibility */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-pop-in {
+  animation: popIn 0.4s ease-out forwards;
 }
 
 /* Reduced motion preferences */

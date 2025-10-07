@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './sections/Hero';
 import About from './sections/About';
@@ -12,6 +13,33 @@ import Footer from './sections/Footer';
 import Chatbot from './components/Chatbot';
 import { SECTIONS } from './constants';
 import Loader from './components/Loader';
+
+// Animation variants for different sections
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const sectionVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50 
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,66 +60,73 @@ const App: React.FC = () => {
       { rootMargin: '-30% 0px -70% 0px', threshold: 0 }
     );
 
-    const animationObserver = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove('opacity-0');
-            entry.target.classList.add('animate-fade-in-up');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const sectionElements = Object.values(sectionRefs.current);
+    const sectionElements = Object.values(sectionRefs.current).filter(Boolean) as HTMLElement[];
     sectionElements.forEach((section) => {
-      if (section) {
-        navObserver.observe(section);
-        animationObserver.observe(section);
-      }
+      navObserver.observe(section);
     });
 
     return () => {
       navObserver.disconnect();
-      animationObserver.disconnect();
     };
   }, [isLoading]);
 
   if (isLoading) {
-    return <Loader onLoaded={() => setIsLoading(false)} />;
+    return (
+      <AnimatePresence>
+        <motion.div
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Loader onLoaded={() => setIsLoading(false)} />
+        </motion.div>
+      </AnimatePresence>
+    );
   }
 
+  const sectionComponents = [
+    { component: Hero, id: SECTIONS[0].id },
+    { component: About, id: SECTIONS[1].id },
+    { component: Skills, id: SECTIONS[2].id },
+    { component: Projects, id: SECTIONS[3].id },
+    { component: Experience, id: SECTIONS[4].id },
+    { component: Education, id: SECTIONS[5].id },
+    { component: Contact, id: SECTIONS[6].id },
+  ];
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <motion.div 
+      className="flex flex-col min-h-screen"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <Navbar activeSection={activeSection} />
       <main className="flex-grow">
-        <div id={SECTIONS[0].id} ref={(el) => { sectionRefs.current[SECTIONS[0].id] = el; }} className="opacity-0">
-          <Hero />
-        </div>
-        <div id={SECTIONS[1].id} ref={(el) => { sectionRefs.current[SECTIONS[1].id] = el; }} className="opacity-0">
-          <About />
-        </div>
-        <div id={SECTIONS[2].id} ref={(el) => { sectionRefs.current[SECTIONS[2].id] = el; }} className="opacity-0">
-          <Skills />
-        </div>
-        <div id={SECTIONS[3].id} ref={(el) => { sectionRefs.current[SECTIONS[3].id] = el; }} className="opacity-0">
-          <Projects />
-        </div>
-        <div id={SECTIONS[4].id} ref={(el) => { sectionRefs.current[SECTIONS[4].id] = el; }} className="opacity-0">
-          <Experience />
-        </div>
-        <div id={SECTIONS[5].id} ref={(el) => { sectionRefs.current[SECTIONS[5].id] = el; }} className="opacity-0">
-          <Education />
-        </div>
-        <div id={SECTIONS[6].id} ref={(el) => { sectionRefs.current[SECTIONS[6].id] = el; }} className="opacity-0">
-          <Contact />
-        </div>
+        {sectionComponents.map(({ component: Component, id }, index) => (
+          <motion.div
+            key={id}
+            id={id}
+            ref={(el) => { sectionRefs.current[id] = el; }}
+            variants={sectionVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            custom={index}
+          >
+            <Component />
+          </motion.div>
+        ))}
       </main>
-      <Footer />
+      <motion.div
+        variants={sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <Footer />
+      </motion.div>
       <Chatbot />
-    </div>
+    </motion.div>
   );
 };
 
