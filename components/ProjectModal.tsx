@@ -197,7 +197,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                 href={liveDemoLink} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="bg-accent dark:bg-dark-accent text-primary dark:text-dark-primary font-bold py-2 px-4 rounded-lg shadow-lg hover:bg-sky-600 dark:hover:bg-sky-500 transition-transform duration-300 hover:scale-105 flex items-center gap-2"
+                className="bg-accent dark:bg-dark-accent text-primary dark:text-dark-primary font-bold py-2 px-4 rounded-lg shadow-lg hover:bg-red-600 dark:hover:bg-red-500 transition-transform duration-300 hover:scale-105 flex items-center gap-2"
                 whileHover={{ 
                   scale: 1.05, 
                   y: -2,

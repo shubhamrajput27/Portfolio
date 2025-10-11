@@ -38,7 +38,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, image, te
     <div className="p-6 flex flex-col flex-grow">
       <motion.h3 
         className="text-xl font-bold text-text-primary dark:text-dark-text-primary mb-2"
-        whileHover={{ color: "#0ea5e9" }}
+        whileHover={{ color: "#dc2626" }}
       >
         {title}
       </motion.h3>
@@ -66,7 +66,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, image, te
             }}
             whileHover={{ 
               scale: 1.1,
-              backgroundColor: "#0ea5e9",
+              backgroundColor: "#dc2626",
               color: "#ffffff"
             }}
             custom={index}

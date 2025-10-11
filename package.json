@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@google/genai": "^0.13.0",
+    "devicon": "^2.17.0",
     "framer-motion": "^12.23.22",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

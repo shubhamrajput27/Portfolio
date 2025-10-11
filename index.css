@@ -7,7 +7,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f0f9ff; /* sky-50 */
+  background-color: #fef2f2; /* red-50 */
 }
 
 html.dark ::-webkit-scrollbar-track {
@@ -15,12 +15,12 @@ html.dark ::-webkit-scrollbar-track {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #0369a1; /* sky-700 */
+  background-color: #b91c1c; /* red-700 */
   border-radius: 9999px;
 }
 
 html.dark ::-webkit-scrollbar-thumb {
-  background-color: #38bdf8; /* sky-400 */
+  background-color: #f87171; /* red-400 */
 }
 
 ::-webkit-scrollbar-thumb:hover {

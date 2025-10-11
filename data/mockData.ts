@@ -20,9 +20,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'HTML', iconId: 'html5', proficiency: 95, description: 'Expert in semantic HTML for accessible and well-structured web content.' },
       { name: 'CSS', iconId: 'css3', proficiency: 90, description: 'Skilled in modern CSS, including Flexbox, Grid, and custom animations.' },
       { name: 'Sass', iconId: 'sass', proficiency: 85, description: 'Using Sass for more maintainable and organized stylesheets with variables and mixins.' },
-      { name: 'JavaScript', iconId: 'javascript', proficiency: 95, description: 'Deep understanding of ES6+ features, asynchronous programming, and DOM manipulation.' },
       { name: 'React JS', iconId: 'react', proficiency: 95, description: '5+ years building complex, scalable web apps and reusable component libraries.' },
-      { name: 'TypeScript', iconId: 'typescript', proficiency: 90, description: 'Enhancing code quality and maintainability in large-scale applications with static typing.' },
       { name: 'Next.js', iconId: 'nextjs', proficiency: 85, description: 'Building server-side rendered (SSR) and static site generated (SSG) React applications.' },
       { name: 'Tailwind CSS', iconId: 'tailwindcss', proficiency: 95, description: 'Rapidly building modern, responsive user interfaces with a utility-first approach.' },
       { name: 'Redux', iconId: 'redux', proficiency: 80, description: 'Managing complex application state for large-scale React projects.' },
@@ -35,13 +33,31 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Node JS', iconId: 'nodejs', proficiency: 90, description: 'Building fast and scalable server-side applications and RESTful APIs.' },
       { name: 'Express.js', iconId: 'express', proficiency: 90, description: 'Creating robust APIs and web servers with this minimal and flexible Node.js framework.' },
       { name: 'Firebase', iconId: 'firebase', proficiency: 80, description: 'Utilizing Firebase services like Firestore, Authentication, and Hosting for full-stack apps.' },
-      { name: 'MongoDB', iconId: 'mongodb', proficiency: 85, description: 'Designing and managing NoSQL databases for flexible and scalable data storage.' },
       { name: 'GraphQL', iconId: 'graphql', proficiency: 75, description: 'Building efficient and flexible APIs with a query language for your data.' },
+    ],
+  },
+  {
+    title: 'Programming Languages',
+    skills: [
+      { name: 'JavaScript', iconId: 'javascript', proficiency: 95, description: 'Expert in ES6+, async programming, and full-stack JavaScript development.' },
+      { name: 'TypeScript', iconId: 'typescript', proficiency: 90, description: 'Advanced type-safe programming for large-scale applications and better code maintainability.' },
+      { name: 'Python', iconId: 'python', proficiency: 85, description: 'Proficient in Python for backend development, data analysis, and automation scripting.' },
+      { name: 'Java', iconId: 'java', proficiency: 80, description: 'Object-oriented programming with Java for enterprise applications and Android development.' },
+      { name: 'C++', iconId: 'cpp', proficiency: 75, description: 'System programming, algorithms, and performance-critical application development.' },
+      { name: 'C', iconId: 'c', proficiency: 70, description: 'Low-level system programming and understanding of computer architecture fundamentals.' },
+    ],
+  },
+  {
+    title: 'Databases',
+    skills: [
+      { name: 'MongoDB', iconId: 'mongodb', proficiency: 85, description: 'Designing and managing NoSQL databases for flexible and scalable data storage.' },
+      { name: 'MySQL', iconId: 'mysql', proficiency: 80, description: 'Relational database design, optimization, and management for web applications.' },
     ],
   },
   {
     title: 'Tools & Platforms',
     skills: [
+      { name: 'Git', iconId: 'git', proficiency: 95, description: 'Expert in distributed version control system for tracking code changes and collaboration.' },
       { name: 'GitHub', iconId: 'github', proficiency: 95, description: 'Expert in version control, collaboration, and CI/CD workflows using Git and GitHub.' },
       { name: 'Docker', iconId: 'docker', proficiency: 70, description: 'Containerizing applications for consistent development and deployment environments.' },
       { name: 'Vercel', iconId: 'vercel', proficiency: 90, description: 'Deploying and scaling modern web applications with ease.' },
@@ -184,13 +200,28 @@ export const experiences: Experience[] = [
 
 export const education: Education[] = [
     {
-        degree: 'Bachelor of Science in Computer Science',
-        institution: 'University of Technology',
-        duration: '2014 - 2018',
+        degree: 'Bachelor\'s Degree (College)',
+        institution: 'College/University',
+        duration: '2022 - Present',
         achievements: [
-            'Graduated with Summa Cum Laude honors.',
-            'President of the University Coding Club.',
-            'Published a research paper on machine learning algorithms.',
+            'Pursuing higher education in Computer Science/Engineering',
+            'Focus on modern web technologies and software development',
+        ]
+    },
+    {
+        degree: 'Higher Secondary Education (Class 12th)',
+        institution: 'St. Joseph\'s School, Shakti Nagar, Sonbhadra, UP',
+        duration: '2022',
+        achievements: [
+            'Completed Higher Secondary Education',
+        ]
+    },
+    {
+        degree: 'Secondary School Examination (Class 10th)',
+        institution: 'St. Joseph\'s School, Shakti Nagar, Sonbhadra, UP',
+        duration: '2020',
+        achievements: [
+            'Completed Secondary School Education',
         ]
     }
 ];

@@ -95,7 +95,7 @@ const Hero: React.FC = () => {
             particles: {
               color: { value: theme === 'dark' ? '#334155' : '#cbd5e1' },
               links: {
-                color: theme === 'dark' ? '#38bdf8' : '#0ea5e9',
+                color: theme === 'dark' ? '#ef4444' : '#dc2626',
                 distance: 150,
                 enable: true,
                 opacity: 0.2,
@@ -236,9 +236,9 @@ const Hero: React.FC = () => {
         >
           Hi, I'm <motion.span 
             className="text-accent dark:text-dark-accent"
-            initial={{ color: '#0ea5e9' }}
+            initial={{ color: '#dc2626' }}
             animate={{ 
-              color: ['#0ea5e9', '#f97316', '#ec4899', '#8b5cf6', '#0ea5e9']
+              color: ['#dc2626', '#ef4444', '#f87171', '#fca5a5', '#dc2626']
             }}
             transition={{
               duration: 4,
@@ -273,7 +273,7 @@ const Hero: React.FC = () => {
             onClick={handleDownloadResume}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-accent dark:bg-dark-accent text-primary dark:text-dark-primary font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-sky-600 dark:hover:bg-sky-500 transition-colors duration-300"
+            className="inline-block bg-accent dark:bg-dark-accent text-primary dark:text-dark-primary font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-red-600 dark:hover:bg-red-500 transition-colors duration-300"
             variants={buttonVariants}
             whileHover="hover"
             whileTap="tap"

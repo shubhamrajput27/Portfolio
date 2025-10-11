@@ -101,7 +101,7 @@ const Contact: React.FC = () => {
               required
               className="w-full bg-secondary dark:bg-dark-secondary border border-slate-300 dark:border-slate-600 rounded-md py-3 px-4 text-text-primary dark:text-dark-text-primary focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-dark-accent"
               whileFocus="focus"
-              whileHover={{ borderColor: "#0ea5e9" }}
+              whileHover={{ borderColor: "#dc2626" }}
             />
           </motion.div>
           
@@ -115,7 +115,7 @@ const Contact: React.FC = () => {
               required
               className="w-full bg-secondary dark:bg-dark-secondary border border-slate-300 dark:border-slate-600 rounded-md py-3 px-4 text-text-primary dark:text-dark-text-primary focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-dark-accent"
               whileFocus="focus"
-              whileHover={{ borderColor: "#0ea5e9" }}
+              whileHover={{ borderColor: "#dc2626" }}
             />
           </motion.div>
           
@@ -129,7 +129,7 @@ const Contact: React.FC = () => {
               required
               className="w-full bg-secondary dark:bg-dark-secondary border border-slate-300 dark:border-slate-600 rounded-md py-3 px-4 text-text-primary dark:text-dark-text-primary focus:outline-none focus:ring-2 focus:ring-accent dark:focus:ring-dark-accent resize-none"
               whileFocus="focus"
-              whileHover={{ borderColor: "#0ea5e9" }}
+              whileHover={{ borderColor: "#dc2626" }}
             />
           </motion.div>
           
@@ -137,7 +137,7 @@ const Contact: React.FC = () => {
             <motion.button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-accent dark:bg-dark-accent text-primary dark:text-dark-primary font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-sky-600 dark:hover:bg-sky-500 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-accent dark:bg-dark-accent text-primary dark:text-dark-primary font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-red-600 dark:hover:bg-red-500 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               variants={buttonVariants}
               whileHover={!isSubmitting ? "hover" : undefined}
               whileTap={!isSubmitting ? "tap" : undefined}

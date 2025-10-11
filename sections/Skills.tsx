@@ -1,131 +1,85 @@
-import React, { useMemo } from 'react';
-import { motion } from 'framer-motion';
-import Section from '../components/Section';
-import { skillCategories } from '../data/mockData';
-import SkillIcon from '../components/SkillIcon';
+import React, { useMemo } from "react";
+import { motion } from "framer-motion";
+import Section from "../components/Section";
+import { skillCategories } from "../data/mockData";
+import SkillIcon from "../components/SkillIcon";
 
 const Skills: React.FC = () => {
-  const allSkills = useMemo(() => skillCategories.flatMap(category => category.skills), []);
+  const allSkills = useMemo(
+    () => skillCategories.flatMap((category) => category.skills),
+    []
+  );
 
   const containerVariants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
+        staggerChildren: 0.08,
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
-    hidden: { 
-      scale: 0,
-      opacity: 0,
-      rotateY: 180
-    },
-    visible: { 
-      scale: 1,
+    hidden: { opacity: 0, y: 30, scale: 0.8 },
+    visible: {
       opacity: 1,
-      rotateY: 0,
-      transition: {
-        duration: 0.5,
-        ease: "backOut"
-      }
-    }
-  };
-
-  const iconVariants = {
-    hover: {
-      scale: 1.2,
-      rotate: [0, -10, 10, -10, 0],
-      transition: {
-        duration: 0.5,
-        ease: "easeInOut"
-      }
-    }
-  };
-
-  const tooltipVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 10, 
-      scale: 0.8 
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+      y: 0,
       scale: 1,
-      transition: {
-        duration: 0.2,
-        ease: "easeOut"
-      }
-    }
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
   return (
     <Section title="My Skills">
-      <motion.div 
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8"
+      <motion.div
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {allSkills.map((skill, index) => (
+        {allSkills.map((skill) => (
           <motion.div
             key={skill.name}
-            className="relative group flex flex-col items-center justify-center gap-2 p-6 bg-gradient-to-br from-secondary to-slate-100 dark:from-slate-800 dark:to-dark-secondary rounded-lg border border-slate-200 dark:border-slate-800 shadow-lg"
             variants={itemVariants}
-            whileHover={{ 
-              y: -8,
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-              borderColor: "rgb(14, 165, 233)",
-              transition: { duration: 0.2 }
+            whileHover={{
+              y: -6,
+              scale: 1.05,
+              boxShadow: "0 0 20px rgba(56,189,248,0.5)",
+              transition: { type: "spring", stiffness: 300 },
             }}
-            custom={index}
+            className="relative group p-6 flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900/50 to-slate-800/30 backdrop-blur-xl border border-slate-700/40 hover:border-cyan-400/60 hover:from-slate-800/60 hover:to-slate-900/40 shadow-lg overflow-hidden transition-all duration-300"
           >
-            <motion.div 
-              className="w-16 h-16"
-              variants={iconVariants}
-              whileHover="hover"
+            {/* Floating animated background glow */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-sky-400/5 to-transparent opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500"
+              animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.1, 1] }}
+              transition={{
+                repeat: Infinity,
+                duration: 3,
+                ease: "easeInOut",
+              }}
+            />
+
+            <motion.div
+              whileHover={{ rotateY: 10, rotateX: 5 }}
+              transition={{ type: "spring", stiffness: 200 }}
+              className="z-10 w-14 h-14 mb-2"
             >
-              <SkillIcon iconId={skill.iconId} className="w-full h-full object-contain" />
+              <SkillIcon iconId={skill.iconId} className="w-full h-full" />
             </motion.div>
-            <p className="text-sm font-medium text-text-secondary dark:text-dark-text-secondary mt-2 text-center">
+
+            <p className="z-10 text-sm font-semibold text-slate-300 group-hover:text-cyan-400 transition-colors duration-300">
               {skill.name}
             </p>
 
-            {/* Tooltip */}
-            {(skill.description || skill.proficiency) && (
-              <motion.div 
-                className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-64 bg-slate-900 text-white text-sm rounded-lg shadow-xl p-4 pointer-events-none z-10"
-                variants={tooltipVariants}
-                initial="hidden"
-                whileHover="visible"
-              >
-                <h4 className="font-bold text-base mb-2 text-dark-accent">{skill.name}</h4>
-                {skill.description && (
-                  <p className="text-xs text-slate-300 mb-3">{skill.description}</p>
-                )}
-                {skill.proficiency && (
-                  <div>
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-xs font-semibold text-slate-400">Proficiency</span>
-                      <span className="text-xs font-bold text-dark-accent">{skill.proficiency}%</span>
-                    </div>
-                    <div className="w-full bg-slate-700 rounded-full h-2">
-                      <motion.div
-                        className="bg-dark-accent h-2 rounded-full"
-                        initial={{ width: 0 }}
-                        animate={{ width: `${skill.proficiency}%` }}
-                        transition={{ duration: 1, delay: 0.5 }}
-                      />
-                    </div>
-                  </div>
-                )}
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-x-8 border-x-transparent border-t-8 border-t-slate-900"></div>
-              </motion.div>
-            )}
+            {/* Glow line effect on hover */}
+            <motion.div
+              className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-cyan-400 to-sky-500"
+              whileHover={{ width: "100%" }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            />
           </motion.div>
         ))}
       </motion.div>
