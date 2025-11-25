@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Accounts for fixed navbar */
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff7f0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff6f10;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff4500;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth transitions for all elements */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid #ff6f10;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Timeline gradient background */
+.timeline-gradient-bg {
+  background: linear-gradient(to bottom, 
+    rgba(255, 111, 16, 0.1) 0%, 
+    rgba(255, 111, 16, 0.2) 16%, 
+    rgba(255, 111, 16, 0.3) 33%, 
+    rgba(255, 111, 16, 0.4) 50%, 
+    rgba(255, 111, 16, 0.5) 66%, 
+    rgba(255, 111, 16, 0.6) 83%, 
+    rgba(255, 111, 16, 1) 100%);
+}
+
+/* Timeline dot color */
+.timeline-dot {
+  background-color: #ff6f10;
+}
+
+/* Achievement timeline line height controlled via CSS variable set in JS */
+.achievement-timeline-line {
+  height: var(--achievement-timeline-height, 0px);
+}
+
+/* Optional: visual ring and soft shadow for the dot to improve contrast */
+.timeline-dot {
+  box-shadow: 0 0 0 6px #ffffff, 0 10px 24px rgba(16,24,40,0.12);
+}
