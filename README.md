@@ -91,133 +91,37 @@ When you're ready to deploy:
 npm run build
 ```
 
-The optimized production build will be created in the `dist` folder with:
-- ✅ Minified and optimized JavaScript bundles
-- ✅ CSS optimization and purging
-- ✅ Asset optimization and compression
-- ✅ Source maps for debugging
-
-### Preview Production Build
-
-Want to test the production build locally before deploying?
+This creates an optimized build in the `dist` folder. Want to test it locally first?
 
 ```bash
 npm run preview
 ```
 
-This will serve your production build at `http://localhost:4173`
-
 ## 🌐 Deployment
 
-This project is ready to deploy on multiple platforms. I use Vercel, but you've got options!
+I use Vercel – it's the easiest way to deploy:
 
-### 🚀 Deploy to Vercel (Recommended & Easiest)
-
-#### Method 1: Vercel Dashboard (No Code Required)
 1. Visit [vercel.com](https://vercel.com) and sign up with GitHub
-2. Click "Add New Project" → Import your GitHub repository
-3. Vercel auto-detects everything (Vite, build command, output directory)
-4. Click "Deploy" and grab some coffee – you'll be live in ~2 minutes!
-5. Get your live URL: `https://your-portfolio.vercel.app`
+2. Click "Add New Project" → Import your repository
+3. Click "Deploy" – that's it!
 
-#### Method 2: Vercel CLI (For the Terminal Fans)
-```bash
-# Install Vercel CLI globally
-npm install -g vercel
+Your site will be live in about 2 minutes. Every time you push to `main`, it auto-deploys.
 
-# Login to your account
-vercel login
-
-# Deploy to preview
-vercel
-
-# Deploy to production
-vercel --prod
-```
-
-**Bonus:** Every push to `main` auto-deploys to production. Pretty neat!
-
-### 🔷 Deploy to Netlify
-```bash
-# Install Netlify CLI
-npm install -g netlify-cli
-
-# Login and deploy
-netlify login
-netlify deploy --prod
-```
-
-Or use Netlify's dashboard to connect your GitHub repo (similar to Vercel).
-
-### 📄 Deploy to GitHub Pages
-1. Install gh-pages:
-```bash
-npm install --save-dev gh-pages
-```
-
-2. Add to `package.json` scripts:
-```json
-"homepage": "https://shubhamrajput27.github.io/Portfolio",
-"predeploy": "npm run build",
-"deploy": "gh-pages -d dist"
-```
-
-3. Deploy:
-```bash
-npm run deploy
-```
-
-### ⚙️ Environment Variables on Hosting Platforms
-
-If you're using EmailJS or other services requiring API keys:
-
-**For Vercel:**
-1. Go to Project Settings → Environment Variables
-2. Add your variables (`VITE_EMAILJS_SERVICE_ID`, etc.)
-3. Redeploy for changes to take effect
-
-**For Netlify:**
-1. Go to Site Settings → Build & Deploy → Environment
-2. Add your variables
-3. Trigger a new deploy
+**Need to add environment variables?**
+Go to Project Settings → Environment Variables in Vercel and add your EmailJS credentials.
 
 ## 📁 Project Structure
 
 ```
 Portfolio/
-├── public/
-│   ├── favicon.svg          # Custom "SS" favicon
-│   ├── robots.txt           # Search engine directives
-│   ├── sitemap.xml          # SEO sitemap
-│   └── *.pdf, *.jpg         # Resume and certificates
+├── public/              # Static files (favicon, resume, etc.)
 ├── src/
-│   ├── components/
-│   │   ├── About/           # About section components
-│   │   ├── Achievement/     # Achievements & certifications
-│   │   ├── Contact/         # Contact form with EmailJS
-│   │   ├── Education/       # Educational background
-│   │   ├── Experience/      # Work experience timeline
-│   │   ├── Hero/            # Hero section with floating tech
-│   │   ├── Navbar/          # Navigation bar
-│   │   ├── Projects/        # Projects showcase
-│   │   ├── Skills/          # Skills grid with SVG icons
-│   │   ├── Timeline/        # Timeline component
-│   │   └── ui/              # Reusable UI components
-│   ├── data/
-│   │   └── Data.ts          # Portfolio content and data
-│   ├── hooks/
-│   │   └── useScrollAnimation.ts  # Custom scroll hook
-│   ├── lib/
-│   │   └── utils.ts         # Utility functions
-│   ├── App.tsx              # Main app component
-│   ├── index.css            # Global styles
-│   └── main.tsx             # App entry point
+│   ├── components/      # All React components
+│   ├── data/            # Portfolio content (Data.ts)
+│   ├── hooks/           # Custom hooks
+│   └── lib/             # Utility functions
 ├── index.html
-├── package.json
-├── tailwind.config.js       # Tailwind configuration
-├── tsconfig.json            # TypeScript config
-├── vite.config.ts           # Vite config
-└── vercel.json              # Vercel deployment config
+└── package.json
 ```
 
 ## 🎨 Customization
@@ -245,49 +149,18 @@ Most content is pretty self-explanatory if you open the files. Just update the t
 
 ## 📧 Contact Form Setup
 
-The portfolio includes a functional contact form powered by EmailJS. Here's how to set it up:
+The contact form uses EmailJS. To set it up:
 
-### Step-by-Step Setup:
+1. Sign up at [EmailJS](https://www.emailjs.com/) (it's free)
+2. Create an email service and template
+3. Get your Service ID, Template ID, and Public Key
+4. Add them to your `.env` file or hosting platform's environment variables
 
-1. **Create EmailJS Account**
-   - Visit [EmailJS](https://www.emailjs.com/) and sign up (it's free!)
-   - Verify your email
-
-2. **Add Email Service**
-   - Go to Email Services → Add New Service
-   - Choose your email provider (Gmail, Outlook, etc.)
-   - Follow the setup wizard (super easy)
-
-3. **Create Email Template**
-   - Go to Email Templates → Create New Template
-   - Use these template variables:
-     - `{{from_name}}` - Sender's name
-     - `{{from_email}}` - Sender's email
-     - `{{subject}}` - Message subject
-     - `{{message}}` - Message content
-
-4. **Get Your Credentials**
-   - Copy Service ID from Email Services
-   - Copy Template ID from Email Templates
-   - Copy Public Key from Account → API Keys
-
-5. **Add to Your Project**
-   - Create `.env` file and add your credentials
-   - Or update them directly in `src/components/Contact/ContactForm.tsx`
-   - For deployment, add them as environment variables in Vercel/Netlify
-
-**⚠️ Important:** Never commit your `.env` file (it's already in `.gitignore`)!
+**Important:** Don't commit your `.env` file – it's already in `.gitignore`!
 
 ## 🤝 Contributing
 
-Found a bug? Have an idea for improvement? Contributions are welcome!
-
-### How to Contribute:
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Contributions are welcome! Fork the repo, make your changes, and open a pull request.
 
 ## 🐛 Troubleshooting
 
@@ -316,25 +189,6 @@ npm install
 - Try `npm run build` to see if it's a build issue
 - Check the browser console for errors
 - Open an issue on GitHub if you're stuck!
-
-## 🚀 Performance
-
-The portfolio is optimized for performance:
-- ⚡ **Lighthouse Score**: 95+ Performance
-- 📊 **First Contentful Paint**: < 1.5s
-- 🎯 **Time to Interactive**: < 3s
-- 📦 **Bundle Size**: Optimized with code splitting and lazy loading
-
-## 📱 Browser Support
-
-Works great on:
-- ✅ Chrome (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Edge (latest)
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
-
-Basically, if it's made in the last 2 years, you're good!
 
 ## 👨‍💻 About Me
 
