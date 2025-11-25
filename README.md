@@ -200,7 +200,7 @@ Creates an optimized build in the `dist` folder. Preview it locally with:### Com
 
 - **Skills**: Change `src/components/Skills/SkillsGrid.tsx`
 
-- **About**: Most content is in `src/data/mockData.ts` and component files```bash- **Skills Section**: Grid of 22 tech skills with authentic SVG logos
+- **About**: Most content is in `src/data/Data.ts` and component files```bash- **Skills Section**: Grid of 22 tech skills with authentic SVG logos
 
 
 

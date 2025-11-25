@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { userProfile } from '../../data/mockData';
+import { userProfile } from '../../data/Data';
 import GithubIcon from '../icons/GithubIcon';
 import LinkedinIcon from '../icons/LinkedinIcon';
 import InstagramIcon from '../icons/InstagramIcon';

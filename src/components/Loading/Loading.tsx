@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { userProfile } from '../../data/mockData'
+import { userProfile } from '../../data/Data'
 import FloatingTech from '../Hero/FloatingTech'
 
 export default function Loading() {

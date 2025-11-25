@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import GithubIcon from '../icons/GithubIcon';
 import LinkedinIcon from '../icons/LinkedinIcon';
 import InstagramIcon from '../icons/InstagramIcon';
-import { userProfile } from '../../data/mockData';
+import { userProfile } from '../../data/Data';
 
 function Footer() {
   const currentYear = new Date().getFullYear();
