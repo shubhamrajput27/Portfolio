@@ -22,17 +22,6 @@ Built with modern web technologies and a touch of creativity to provide an inter
 
 ---
 
-## 📸 Screenshots
-
-<div align="center">
-
-### About Me Section
-<img src="./public/Aboutme.png" alt="About Me Section" width="800px" />
-
-</div>
-
----
-
 ## 🎯 What's Inside?
 
 - ✨ **Hero Section** – Animated typing effects with floating tech icons
