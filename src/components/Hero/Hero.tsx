@@ -156,15 +156,23 @@ function Hero() {
   const handleDownloadResume = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     try {
-      // Create a temporary link with the download attribute to force file download
-      const link = document.createElement('a');
-      link.href = userProfile.resumeUrl;
-  // Suggest a filename — force the download filename to "Shubham's Resume.pdf"
-  // (some browsers may sanitize punctuation; this ensures the downloaded file appears with this name)
-  link.download = "Shubham's Resume.pdf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Fetch the file and create a blob to force download with custom filename
+      fetch(userProfile.resumeUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          const url = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = "Shubham's Resume.pdf";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(url);
+        })
+        .catch(() => {
+          // Fallback: open in new tab if fetch fails
+          window.open(userProfile.resumeUrl, '_blank');
+        });
     } catch (err) {
       // Fallback: open in new tab if download attribute is not supported
       window.open(userProfile.resumeUrl, '_blank');
