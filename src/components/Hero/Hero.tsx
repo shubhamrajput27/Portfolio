@@ -272,9 +272,8 @@ function Hero() {
         >
           <motion.a
             href={userProfile.resumeUrl}
+            download="Shubham's Resume.pdf"
             onClick={handleDownloadResume}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-block bg-linear-to-r from-[#ff4500] to-[#ff6347] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
             variants={buttonVariants}
             whileHover="hover"
