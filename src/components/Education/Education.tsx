@@ -1,4 +1,4 @@
-import { Timeline } from "../ui/timeline";
+import { Timeline } from "./Timeline";
 
 function Education() {
   const data = [

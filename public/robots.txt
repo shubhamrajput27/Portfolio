@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shubhamsingh.dev/sitemap.xml
+Sitemap: https://shubhrajput.vercel.app/sitemap.xml

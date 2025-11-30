@@ -63,7 +63,7 @@ export default function Loading() {
                 initial={{ width: '0%' }}
                 animate={{ width: `${progress}%` }}
                 transition={{ ease: 'linear', duration: 0.15 }}
-                className="h-full bg-gradient-to-r from-orange-400 via-red-400 to-orange-500"
+                className="h-full bg-linear-to-r from-orange-400 via-red-400 to-orange-500"
               />
             </div>
             <div className="text-center mt-3 text-sm text-gray-600">{progress}%</div>

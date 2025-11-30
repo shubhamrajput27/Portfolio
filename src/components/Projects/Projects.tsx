@@ -88,7 +88,7 @@ function Projects() {
         viewport={{ once: true }}
         className="text-4xl font-bold text-center text-gray-800 mb-4"
       >
-        Featured Projects
+        💼 Featured Projects
       </motion.h2>
       
       <motion.p
@@ -96,13 +96,13 @@ function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.2 }}
-        className="text-center text-gray-600 mb-16 max-w-2xl mx-auto"
+        className="text-center text-gray-600 mb-10 max-w-2xl mx-auto"
       >
         Here are some of my recent projects that showcase my skills in full-stack development, AI integration, and modern web technologies.
       </motion.p>
 
       {/* Sliding Stack Cards */}
-      <div className="max-w-4xl mx-auto relative h-[600px] flex items-center justify-center mb-12">
+      <div className="max-w-4xl mx-auto relative h-[480px] flex items-center justify-center mb-8">
         <AnimatePresence mode="popLayout">
           {projects.map((project, index) => {
             const isActive = index === currentIndex;

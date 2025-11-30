@@ -50,14 +50,14 @@ function Achievement() {
     {
       year: '2025',
       title: 'Smart India Hackathon Participant',
-      organization: 'Government of India',
+      organization: 'Smart India Hackathon',
       description: 'Participated in Smart India Hackathon 2024, India\'s largest hackathon initiative, working on innovative solutions to real-world problems.',
       type: 'achievement',
     },
     {
       year: '2023',
       title: 'FOSS Hackathon - Top 5',
-      organization: 'FOSS',
+      organization: 'Free and Open Source Software',
       description: 'Secured a position in the top 5 at the FOSS (Free and Open Source Software) Hackathon by developing an innovative open-source project that contributed to the developer community.',
       type: 'achievement',
       certificateUrl: '/FOSS.pdf',
@@ -67,7 +67,7 @@ function Achievement() {
   return (
     <section
       id="achievements"
-      className="py-12 md:py-20 px-4 sm:px-6 md:px-10 lg:px-20 bg-cream"
+      className="py-20 px-4 sm:px-6 md:px-10 lg:px-20 bg-cream"
       aria-label="Achievements section"
       ref={containerRef}
     >
@@ -75,10 +75,20 @@ function Achievement() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-3xl sm:text-4xl font-bold text-center text-muted mb-8 md:mb-12 px-2"
+        className="text-3xl sm:text-4xl font-bold text-center text-muted mb-4 px-2"
       >
         Achievements & Certifications 🏆
       </motion.h2>
+
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.2 }}
+        className="text-center text-gray-600 mb-8 md:mb-12 max-w-2xl mx-auto"
+      >
+        Recognition and certifications earned through hackathons, competitions, and professional development programs.
+      </motion.p>
 
       {events.length === 0 ? (
         <div className="max-w-4xl mx-auto text-center py-12">

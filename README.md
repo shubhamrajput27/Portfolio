@@ -2,7 +2,9 @@
 
 # Welcome to My Portfolio Website! 🌟
 
-<img src="./public/Aboutme.png" alt="Portfolio Preview" width="800px" />
+<a href="https://shubhrajput.vercel.app/" target="_blank">
+  <img src="./public/Aboutme.png" alt="Portfolio Preview" width="800px" />
+</a>
 
 ### 🚀 A seamless blend of style and functionality, showcasing my journey, projects, and skills in the tech world!
 

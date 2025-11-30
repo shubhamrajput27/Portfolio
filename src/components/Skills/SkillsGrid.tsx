@@ -22,7 +22,6 @@ const skills: Skill[] = [
   { name: 'Git', id: 'git' },
   { name: 'Figma', id: 'figma' },
   { name: 'Tailwind CSS', id: 'tailwind' },
-  { name: 'Bootstrap', id: 'bootstrap' },
   { name: 'Vercel', id: 'vercel' },
   { name: 'PHP', id: 'php' },
 ];
@@ -30,10 +29,10 @@ const skills: Skill[] = [
 export default function SkillsGrid() {
   const reduceMotion = useReducedMotion();
   return (
-    <section id="skills" className="py-16 px-6 md:px-12 lg:px-20 bg-white">
+    <section id="skills" className="py-20 px-6 md:px-12 lg:px-20 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
-          <h3 className="text-3xl font-semibold text-gray-800">My Skills</h3>
+          <h3 className="text-4xl font-bold text-gray-800">🛠️ My Skills</h3>
           <p className="text-gray-500 mt-2">Technologies I work with</p>
         </div>
 
@@ -65,7 +64,7 @@ export default function SkillsGrid() {
                   />
                 );
               })()}
-              <span className="mt-3 text-sm text-gray-700 font-semibold">{skill.name}</span>
+              <span className="mt-3 text-sm text-gray-700 font-bold">{skill.name}</span>
             </div>
           ))}
         </motion.div>
